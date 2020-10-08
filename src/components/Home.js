@@ -2,22 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import logo from '../logo.svg';
+import nyclogo from '../nyclogo.svg';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
 import Deposits from '../components/Deposits';
+
 import Typography from '@material-ui/core/Typography';
+
 
 const drawerWidth = 540;
 
 const styles = theme => ({
   content: {
-  	 ...theme.mixins.gutters(),
-    //backgroundColor: theme.palette.background.paper,
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+     ...theme.mixins.gutters(),
+     
+    backgroundColor: theme.palette.background.paper,
+    
+    //paddingTop: theme.spacing.unit * 2,
+    //paddingBottom: theme.spacing.unit * 2,
     flexGrow: 1,
-    height: '100vh',
+    //height: '100vh',
     overflow: 'auto',
     width: '100%'
      
@@ -105,25 +110,31 @@ function Home(props) {
     <div >
         <div className="App-header">
             <div className={classes.content}>
-                <img src={logo} className="App-logo" alt="logo" />
+                <img src={nyclogo} className="App-logo" alt="logo" />
                 
         
                 {/* Recent Deposits */}
                 <Grid container spacing={1}>
                 <Grid  item xs={12} sm={6}>
-                    <Paper className={fixedHeightPaper}>
+                    <Paper className={fixedHeightPaper} elevation={3} >
                         <Deposits headerTitle="NYC Daily Positivity Rate" extractField="PERCENT_POSITIVE"/>
                     </Paper>
                 </Grid>
                 <Grid  item xs={12} sm={6}>
-                    <Paper className={fixedHeightPaper}>
+                    <Paper className={fixedHeightPaper} elevation={3} >
                         <Deposits headerTitle="NYC 7 Day Avg Positivity Rate" extractField="PERCENT_POSITIVE_7DAYS_AVG"/>
                     </Paper>
                 </Grid>            
                 
                 </Grid>
             </div>
-    </div>
+            <div>
+            
+            </div>
+            
+        </div>
+        
+      
     </div>
   );
 }

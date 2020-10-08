@@ -64,7 +64,7 @@ class Header extends React.Component {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" noWrap>
-            NYC Covid Rates
+            NYC Covid Rate
           </Typography>
           <div className={classes.grow}/>
           {/*

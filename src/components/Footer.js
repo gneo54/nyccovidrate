@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
- 
+import Ad from '../components/Ad';
+
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
@@ -20,9 +21,10 @@ function Footer(props) {
  
   return (
     <footer className={classes.footer}>
+      
       <Paper className={classes.root} elevation={1}>
         <Typography component="p">    
-          Powered by Tristar Associates | For Inquiries, Contact <a href={'mailto:gean@tristarassoc.com'}>gean@tristarassoc.com</a>
+          Powered by Tristar | For Inquiries, Contact <a href={'mailto:info@tristarassoc.com'}>info@tristarassoc.com</a>
         </Typography>
         <Typography component="p">
         © 2020 All Rights Reserved 
