@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -61,7 +62,7 @@ class Header extends React.Component {
   return (<AppBar position="static">
      <Toolbar>
           <IconButton color="inherit" aria-label="Open drawer">
-            <MenuIcon />
+            <HomeIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" noWrap>
             NYC Covid Rate
