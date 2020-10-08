@@ -57,7 +57,7 @@ class Deposits extends Component {
     }
     componentDidMount() {
 
-        let apiUrl = `https://nyccovid-aba5.restdb.io/rest/covidtests?q={}&h={"$orderby": {"DATE": -1}}`;
+        let apiUrl = `https://nyccovid-aba5.restdb.io/rest/covidtests?q={}&h={"$orderby": {"DATE": 1}}`;
     
         fetch(apiUrl, {
             method: 'GET',
