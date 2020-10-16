@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 //import { makeStyles } from '@material-ui/core/styles';
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Home from './components/Home'
+import MainContent from './components/MainContent'
 import './App.css';
 import AdSense from 'react-adsense';
 
-class App extends Component {
+class Home extends Component {
 
   render() {
 
     return (
       <div className="App">
-        <Header />
-        <Home />
+        {/*<Header />*/}
+        <MainContent />
        
         
         <Footer/>      
@@ -24,7 +24,7 @@ class App extends Component {
 
 
 
-export default App;
+export default Home;
 
 
 

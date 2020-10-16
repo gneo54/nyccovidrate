@@ -10,7 +10,7 @@ import nyclogo from '../nyclogo.svg';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
-import Deposits from '../components/Deposits';
+import Deposits from './Deposits';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -115,7 +115,7 @@ const useStyles = theme => ({
   }
 });
 */
-function Home(props) {
+function MainContent(props) {
   
 
   const { classes } = props;
@@ -126,7 +126,7 @@ function Home(props) {
 
   return (
     <div >
-        <div className="App-header">
+        <div >
             <div className={classes.content}>
                 <img src={nyclogo} className="App-logo" alt="logo" />
                 
@@ -178,8 +178,8 @@ function Home(props) {
   );
 }
  
-Home.propTypes = {
+MainContent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 //export default withStyles(useStyles)(Home);
-export default withStyles(styles)(Home);
+export default withStyles(styles)(MainContent);
