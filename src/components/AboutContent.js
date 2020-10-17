@@ -61,8 +61,7 @@ const useStyles = ((theme) => ({
   cardPricing: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'baseline',
-    textAlign: 'center',
+    alignItems: 'baseline',  
     marginBottom: theme.spacing(2),
   },
   footer: {
