@@ -154,7 +154,7 @@ class AboutContent extends Component {
         <p />
       </Container>
       
-      <Container maxWidth="md" component="main">
+      <Container maxWidth="md" component="donate">
       
         <Grid container spacing={5} alignItems="flex-end">
           
