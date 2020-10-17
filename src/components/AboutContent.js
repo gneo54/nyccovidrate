@@ -86,8 +86,7 @@ const tiers = [
     buttonVariant: 'contained',
   },
   {
-    title: 'Groceries',
-    //subheader: 'Most popular',
+    title: 'Groceries',    
     price: '100',
     description: [
       '20 users included',
@@ -109,24 +108,6 @@ const tiers = [
     ],
     buttonText: 'Donate',
     buttonVariant: 'contained',
-  },
-];
-const footers = [
-  {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
   },
 ];
 
@@ -175,20 +156,9 @@ class AboutContent extends Component {
                     <Typography component="h2" variant="h3" color="textPrimary">
                       ${tier.price}
                     </Typography>
-                    {/*<Typography variant="h6" color="textSecondary">
-                      /mo
-                    </Typography>
-                    */}
+                    
                   </div>
-                  {/*
-                  <ul>
-                    {tier.description.map((line) => (
-                      <Typography component="li" variant="subtitle1" align="center" key={line}>
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
-                    */}
+                  
                 </CardContent>
                 <CardActions>
                   <Button fullWidth variant={tier.buttonVariant} color="primary">
@@ -204,7 +174,7 @@ class AboutContent extends Component {
       <Container maxWidth="md" component="footer" className={classes.footer}>
         
         <Box mt={5} className="App">
-          {/*<Copyright />*/}
+          
           <Footer/>      
         </Box>
       </Container>
