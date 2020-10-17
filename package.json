@@ -20,16 +20,15 @@
     "react-scripts": "3.4.3",
     "serve": "^11.3.2"
   },
-  "engines": { "npm": "6.x", "node": "12.x" },
+  "engines": {
+    "npm": "6.x",
+    "node": "12.x"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
