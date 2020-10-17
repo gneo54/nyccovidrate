@@ -150,7 +150,7 @@ function MainContent(props) {
             </div>
             
             <div infoContainer>
-            <Grid item xs={12} md={12}>
+            {/*<Grid item xs={12} md={12}>
                   <Typography variant="h6" className={classes.listTitle}>
                     Misc Info
                   </Typography>
@@ -169,6 +169,7 @@ function MainContent(props) {
                     </List>
                   </div>
                 </Grid>
+  */}
             </div>
             
         </div>
