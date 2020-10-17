@@ -19,6 +19,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import Home from './Home';
 import AboutContent from './components/AboutContent';
+import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
 
 const drawerWidth = 240;
 
@@ -71,13 +73,13 @@ function ResponsiveDrawer(props) {
       <List>
       <ListItem key={"Home"} component={Link} to={"/"}>
             <ListItemIcon>
-               <InboxIcon />
+               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary={"Home"} />
           </ListItem>
       <ListItem key={"About"} component={Link} to={"/" + "About"}>
             <ListItemIcon>
-               <MailIcon />
+               <InfoIcon />
             </ListItemIcon>
             <ListItemText primary={"About"} />
           </ListItem>
@@ -143,8 +145,8 @@ function ResponsiveDrawer(props) {
           <div className={classes.toolbar} />
 
           <Switch>
-            <Route exact path="/" render={() => <Home/>} />
-            <Route path="/About" component={AboutContent} />
+            <Route exact path="/"  component={Home}  />
+            <Route path="/About"   component={AboutContent} />
             {/*<Route path="/Starred" render={() => <div>Page starred</div>} />
             */}
           </Switch>
