@@ -64,8 +64,8 @@ const footers = [
     description: [{title: 'Find Your Zone', link: 'https://NYC.gov/COVIDZone'}],
   },
   {
-    title: 'Data',
-    description: [{title: 'Source', link: 'https://github.com/nychealth/coronavirus-data'}],
+    title: 'Source',
+    description: [{title: 'Data', link: 'https://github.com/nychealth/coronavirus-data'}, {title: 'Github', link: 'https://github.com/gneo54/nyccovidrate'}],
   },
   {
     title: 'About',
