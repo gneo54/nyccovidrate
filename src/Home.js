@@ -87,8 +87,8 @@ class Home extends Component {
 
     return (
       <div className="App">
-        {/*<Header />*/}
-        <MainContent />
+        {/*<Header /> <MainContent />*/}
+       
        
         <CssBaseline />
         
