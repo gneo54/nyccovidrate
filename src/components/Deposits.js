@@ -64,12 +64,15 @@ class Deposits extends Component {
             headers: {  'x-apikey': apikey }
         }).then((response) => response.json())
         .then((responseJson) => {
-            let resLength = responseJson.length;
-            console.log(responseJson[resLength-1]);
-            this.setState({
-                lastTestResult: responseJson[resLength-1],
-                IsLoading: false
-            });
+          
+            if (responseJson){
+              let resLength = responseJson.length;
+              console.log(responseJson[resLength-1]);
+              this.setState({
+                  lastTestResult: responseJson[resLength-1],
+                  IsLoading: false
+              });
+            }
         })
         .catch((error) => {
             //toast.error(error);
