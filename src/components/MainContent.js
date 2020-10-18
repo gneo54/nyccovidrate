@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import logo from '../logo.svg';
@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 540;
 
-const styles = theme => ({
+const useStyles = (theme) => ({
   content: {
      ...theme.mixins.gutters(),
      
@@ -115,13 +115,15 @@ const useStyles = theme => ({
   }
 });
 */
-function MainContent(props) {
-  
+class MainContent extends Component {
 
-  const { classes } = props;
+  
+  render() {
+  
 
   //const classes  = useStyles();
   //const classes  = styles();
+  const {classes} = this.props;
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -178,9 +180,10 @@ function MainContent(props) {
     </div>
   );
 }
+}
  
 MainContent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-//export default withStyles(useStyles)(Home);
-export default withStyles(styles)(MainContent);
+
+export default withStyles(useStyles)(MainContent);

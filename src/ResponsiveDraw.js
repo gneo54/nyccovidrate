@@ -8,6 +8,7 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
@@ -18,6 +19,9 @@ import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 //import VisibleItemList from '../containers/VisibleItemList'
 import Home from './Home';
 import AboutContent from './components/AboutContent';
+import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
+
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,10 +68,16 @@ const drawer = (
       <Divider />
       <List>
       <ListItem button key={'Home'} component={Link} to={"/" + ""}>
+          <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
             <ListItemText primary={'Home'} />
           </ListItem>
 
           <ListItem button key={'About'} component={Link} to={"/" + "About"}>
+          <ListItemIcon>
+               <InfoIcon />
+            </ListItemIcon>
             <ListItemText primary={'About'} />
           </ListItem>
 

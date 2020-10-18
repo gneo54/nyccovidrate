@@ -76,7 +76,8 @@ const useStyles = ((theme) => ({
   },
 }));
 
-const tiers = [
+
+const donateOptions = [
   {
     title: 'Coffee',
     price: '2',
@@ -109,11 +110,21 @@ const tiers = [
     buttonVariant: 'contained',
   },
 ];
-
 class AboutContent extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        donationOptions : donateOptions      
+    }
+
+}
+ 
 
   render() {
     const {classes} = this.props;
+    const { donationOptions } = this.state;
+    
   return(<div>
     
       <Container maxWidth="md" component="main" className={classes.heroContent}>
@@ -138,9 +149,9 @@ class AboutContent extends Component {
       
         <Grid container spacing={5} alignItems="flex-end">
           
-          {tiers.map((tier) => (
+          {donationOptions.map((tier) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Groceries' ? 12 : 6} md={4}>
+            <Grid item key={tier.title} xs={12} sm={tier.title === 'AGroceries' ? 12 : 6} md={4}>
               <Card>
                 <CardHeader
                   title={tier.title}
