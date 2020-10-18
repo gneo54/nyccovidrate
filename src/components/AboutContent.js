@@ -134,49 +134,7 @@ class AboutContent extends Component {
         <p />
       </Container>
       
-      <Container maxWidth="md" component="donate">
-      
-        <Grid container spacing={5} alignItems="flex-end">
-          
-          {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Groceries' ? 12 : 6} md={4}>
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'AGroceries' ? <StarIcon /> : null}
-                  className={classes.cardHeader}
-                />
-                <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
-                      ${tier.price}
-                    </Typography>
-                    
-                  </div>
-                  
-                </CardContent>
-                <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-      
-      <Container maxWidth="md" component="footer" className={classes.footer}>
-        
-        <Box mt={5} className="App">
-          
-          <Footer/>      
-        </Box>
-      </Container>
+     
       </div>);}
 }
 
