@@ -134,9 +134,13 @@ return (
       <div className={classes.content}>
         <div className={classes.toolbar} />    
         <Switch>
-            
+        
+            <Route exact path="/" render={() => <Home/>} />
+            <Route exact path="/About" render={() => <AboutContent/>} />
+            {/*
             <Route path="/" render={() => <div>Home starred</div>} />
-            <Route path="/About"   component={AboutContent} />
+            <Route exact path="/"  component={Home}  />
+            <Route path="/About"   component={AboutContent} />*/}
             
         </Switch>
       </div>
