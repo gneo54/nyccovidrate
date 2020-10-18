@@ -93,7 +93,31 @@ class Home extends Component {
         <CssBaseline />
         
         
-       
+        <Grid container spacing={4} justify="space-evenly">
+          {footers.map((footer) => (
+            <Grid item xs={6} sm={3} key={footer.title}>
+              <Typography variant="h6" color="textPrimary" gutterBottom>
+                {footer.title}
+              </Typography>
+              <ul>
+                {footer.description.map((item) => (
+                  <li key={item.title}>
+                    <Link href={item.link} variant="subtitle1" color="textSecondary">
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Grid>
+          ))}
+        </Grid>
+        <Container maxWidth="md" component="footer" className={classes.footer}>
+          <Box mt={5} className="App">
+            {/*<Copyright />*/}
+            <Footer/>      
+          </Box>
+        
+        </Container>
              
         </div>
     );

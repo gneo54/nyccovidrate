@@ -134,7 +134,8 @@ return (
       <div className={classes.content}>
         <div className={classes.toolbar} />    
         <Switch>
-            <Route exact path="/"  component={Home}  />
+            
+            <Route path="/" render={() => <div>Home starred</div>} />
             <Route path="/About"   component={AboutContent} />
             
         </Switch>
