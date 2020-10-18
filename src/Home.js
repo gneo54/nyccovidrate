@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = ((theme) => ({
   '@global': {
     ul: {
       margin: 0,
