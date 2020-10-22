@@ -108,7 +108,7 @@ const donateOptions = [
     ],
     buttonText: 'Donate',
     buttonVariant: 'contained',
-  },
+  }
 ];
 class AboutContent extends Component {
 
@@ -145,15 +145,18 @@ class AboutContent extends Component {
         <p />
       </Container>
       
-      <Container maxWidth="md" component="Donate">
+      <Container maxWidth="md" >
       
         <Grid container spacing={5} alignItems="flex-end">
-        {"test" + donationOptions.length}
+        {"arraLength" + donationOptions.length}
           {donationOptions.map((tier) =>  ( 
+            <div key={"a" + tier.title}>
+              <div key={"b" + tier.title}>
+              { tier.title}
+              </div>
             
-            // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'AGroceries' ? 12 : 6} md={4}>
-              {"test" + tier.title}
+              {"ingrid" + tier.title}
               <Card>
                 <CardHeader
                   title={tier.title}
@@ -179,8 +182,10 @@ class AboutContent extends Component {
                 </CardActions>
               </Card>
             </Grid>
+            </div>
           ))}
         </Grid>
+        
       </Container>
       
       <Container maxWidth="md" component="footer" className={classes.footer}>
