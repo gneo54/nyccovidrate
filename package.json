@@ -13,6 +13,7 @@
     "moment-timezone": "^0.5.31",
     "react": "^16.13.1",
     "react-adsense": "^0.1.0",
+    "react-coinbase-commerce": "^1.4.4",
     "react-dom": "^16.13.1",
     "react-intl": "^5.8.4",
     "react-moment": "^1.0.0",

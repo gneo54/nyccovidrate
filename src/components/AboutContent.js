@@ -18,6 +18,9 @@ import Footer from '../components/Footer';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import CoinbaseCommerceButton from 'react-coinbase-commerce';
+import 'react-coinbase-commerce/dist/coinbase-commerce-button.css';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -115,7 +118,12 @@ class AboutContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        donationOptions: donateOptions      
+        donationOptions: donateOptions,
+        cbOptions: {"pricing_type": "fixed_price",
+                    "local_price": { "amount": "100.0", "currency": "USD" },
+                    "description": "test desc"
+                  }
+
     }
 
 }
@@ -123,7 +131,7 @@ class AboutContent extends Component {
 
   render() {
     const {classes} = this.props;
-    const { donationOptions } = this.state;
+    const { donationOptions, cbOptions } = this.state;
     
   return(<div>
     
@@ -173,9 +181,10 @@ class AboutContent extends Component {
                   
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
+                <CoinbaseCommerceButton  checkoutId={'d61d5520-d6c9-4664-af0f-829f5a07ff57'}>Donate</CoinbaseCommerceButton>
+                  {/*<Button fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
-                  </Button>
+          </Button>*/}
                 </CardActions>
               </Card>
             </Grid>
