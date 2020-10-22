@@ -181,7 +181,7 @@ class AboutContent extends Component {
                   
                 </CardContent>
                 <CardActions>
-                <CoinbaseCommerceButton  checkoutId={'d61d5520-d6c9-4664-af0f-829f5a07ff57'}>Donate</CoinbaseCommerceButton>
+                <CoinbaseCommerceButton  checkoutId={'3fc13d9e-93b1-424c-aecd-885b1dd0bfb0'}>Donate</CoinbaseCommerceButton>
                   {/*<Button fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
           </Button>*/}
