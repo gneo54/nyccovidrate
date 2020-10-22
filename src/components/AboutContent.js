@@ -148,15 +148,12 @@ class AboutContent extends Component {
       <Container maxWidth="md" >
       
         <Grid container spacing={5} alignItems="flex-end">
-        {"arraLength" + donationOptions.length}
+        
           {donationOptions.map((tier) =>  ( 
-            <div key={"a" + tier.title}>
-              <div key={"b" + tier.title}>
-              { tier.title}
-              </div>
+            
             
             <Grid item key={tier.title} xs={12} sm={tier.title === 'AGroceries' ? 12 : 6} md={4}>
-              {"ingrid" + tier.title}
+              
               <Card>
                 <CardHeader
                   title={tier.title}
@@ -182,7 +179,7 @@ class AboutContent extends Component {
                 </CardActions>
               </Card>
             </Grid>
-            </div>
+            
           ))}
         </Grid>
         
