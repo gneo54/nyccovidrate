@@ -115,7 +115,7 @@ class AboutContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        donationOptions : donateOptions      
+        donationOptions: donateOptions      
     }
 
 }
@@ -148,10 +148,12 @@ class AboutContent extends Component {
       <Container maxWidth="md" component="Donate">
       
         <Grid container spacing={5} alignItems="flex-end">
-          
-          {donationOptions.map((tier) => (
+        {"test" + donationOptions.length}
+          {donationOptions.map((tier) =>  ( 
+            
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'AGroceries' ? 12 : 6} md={4}>
+              {"test" + tier.title}
               <Card>
                 <CardHeader
                   title={tier.title}
