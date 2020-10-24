@@ -18,6 +18,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 //import VisibleItemList from '../containers/VisibleItemList'
 import Home from './Home';
+import Dashboard from './Dashboard';
 import AboutContent from './components/AboutContent';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
@@ -80,8 +81,14 @@ const drawer = (
             </ListItemIcon>
             <ListItemText primary={'About'} />
           </ListItem>
-
-        
+          {/* 
+          <ListItem button key={'Dashboard'} component={Link} to={"/" + "Dashboard"}>
+          <ListItemIcon>
+               <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Dashboard'} />
+          </ListItem>
+        */}
       </List>
     </div>
   );
@@ -147,7 +154,9 @@ return (
         
             <Route exact path="/" render={() => <Home/>} />
             <Route exact path="/About" render={() => <AboutContent/>} />
+            
             {/*
+            <Route exact path="/Dashboard" render={() => <Dashboard/>} />
             <Route path="/" render={() => <div>Home starred</div>} />
             <Route exact path="/" render={() => <div>Home starred</div>} />
             <Route exact path="/"  component={Home}  />

@@ -77,6 +77,18 @@ const useStyles = ((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
+  donateButton:{
+    height: '40px',
+    color: 'white',
+    background: '#3f51b5',
+    border:  'none',
+    borderRadius: '2px',
+    fontWeight: 'bold',
+    
+    margin: theme.spacing.unit * 2,
+    width: '100%',
+    transition: 'box-shadow 150ms ease-out'
+  }
 }));
 
 
@@ -181,7 +193,7 @@ class AboutContent extends Component {
                   
                 </CardContent>
                 <CardActions>
-                <CoinbaseCommerceButton  checkoutId={'3fc13d9e-93b1-424c-aecd-885b1dd0bfb0'}>Donate</CoinbaseCommerceButton>
+                <CoinbaseCommerceButton className={classes.donateButton}  checkoutId={'3fc13d9e-93b1-424c-aecd-885b1dd0bfb0'}>Donate</CoinbaseCommerceButton>
                   {/*<Button fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
           </Button>*/}
