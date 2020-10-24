@@ -13,8 +13,34 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import MetricStat from './components/MetricStat';
+import Moment from 'react-moment';
+import moment from 'moment';
+import nyclogo from './nyclogo.svg';
 
-const useStyles = makeStyles((theme) => ({
+import "tabler-react/dist/Tabler.css";
+
+import {
+  Page,
+  Avatar,
+  Icon,
+  Grid as trGrid,
+  Card,
+  Text,
+  Table,
+  Alert,
+  Progress,
+  colors,
+  Dropdown,
+  Button,
+  StampCard,
+  StatsCard,
+  ProgressCard,
+  Badge,
+} from "tabler-react";
+
+
+const useStyles = ((theme) => ({
   '@global': {
     ul: {
       margin: 0,
@@ -77,22 +103,90 @@ const footers = [
   },
 ];
 
+const apikey = '5f7be4cf0acc087071bbf447';
+
 class Home extends Component {
 
 
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+        lastTestResult : {},
+        IsLoading : true
+
+    }
+
+}
+componentDidMount() {
+
+    let apiUrl = `https://nyccovid-aba5.restdb.io/rest/covidtests?q={}&h={"$orderby": {"DATE": 1}}`;
+
+    fetch(apiUrl, {
+        method: 'GET',
+        headers: {  'x-apikey': apikey }
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      
+        if (responseJson){
+          let resLength = responseJson.length;
+          
+          this.setState({
+              lastTestResult: responseJson[resLength-1],
+              IsLoading: false
+          });
+        }
+    })
+    .catch((error) => {
+        //toast.error(error);
+        console.log(error);
+    });     
+  }
+
   render() {
     //const classes = useStyles();
     const {classes} = this.props;
+    const { lastTestResult, IsLoading } = this.state;
+    let formattedAsOfDate = '';
+    
+    if (!IsLoading){
+      formattedAsOfDate = (moment(lastTestResult.DATE)).add(5, 'h').format('MM-DD-YYYY');
+    }
+    
 
     return (
       <div className="App">
-        {/*<Header />*/}
-        <MainContent />
+
+        {/*<Header /> <MainContent />*/}
+        
        
         <CssBaseline />
+        <img src={nyclogo} className="App-logo" alt="logo" />
+        
+        <Page.Content title={IsLoading ? "Fetching..." : "As of " + formattedAsOfDate }>
+        
+        <trGrid.Row cards={true}>
+          <trGrid.Col width={12} sm={12} lg={6}>
+            <MetricStat IsLoading={IsLoading} metricLabel="NYC Daily Positivity Rate" metricValue={lastTestResult.PERCENT_POSITIVE}/>
+          </trGrid.Col>
+          <trGrid.Col width={12} sm={12} lg={6}>
+            <MetricStat IsLoading={IsLoading} metricLabel="NYC 7 Day Avg Positivity Rate" metricValue={lastTestResult.PERCENT_POSITIVE_7DAYS_AVG}/>
+          </trGrid.Col>
+        </trGrid.Row> 
         
         
+        
+          </Page.Content>
+          {/*
+        <Card>
+        <Card.Header>
+          <Card.Title>Card Title</Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <Button color="primary">A Button</Button>
+        </Card.Body>
+      </Card>
+          */}
+
         <Grid container spacing={4} justify="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>

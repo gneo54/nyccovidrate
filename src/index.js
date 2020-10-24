@@ -5,14 +5,12 @@ import App from './Home';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import ResponsiveDrawer from './ResponsiveDrawer';
+import ResponsiveDraw from './ResponsiveDraw';
 
 ReactDOM.render(
   <React.StrictMode>
-     {/*<BrowserRouter>
-    <App />
-    </BrowserRouter>
-     */}
-     <ResponsiveDrawer/>
+     
+     <ResponsiveDraw/>
 
   </React.StrictMode>,
   document.getElementById('root')

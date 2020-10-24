@@ -18,6 +18,9 @@ import Footer from '../components/Footer';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import CoinbaseCommerceButton from 'react-coinbase-commerce';
+import 'react-coinbase-commerce/dist/coinbase-commerce-button.css';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -61,8 +64,7 @@ const useStyles = ((theme) => ({
   cardPricing: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'baseline',
-    textAlign: 'center',
+    alignItems: 'baseline',  
     marginBottom: theme.spacing(2),
   },
   footer: {
@@ -75,9 +77,22 @@ const useStyles = ((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
+  donateButton:{
+    height: '40px',
+    color: 'white',
+    background: '#3f51b5',
+    border:  'none',
+    borderRadius: '2px',
+    fontWeight: 'bold',
+    
+    margin: theme.spacing.unit * 2,
+    width: '100%',
+    transition: 'box-shadow 150ms ease-out'
+  }
 }));
 
-const tiers = [
+
+const donateOptions = [
   {
     title: 'Coffee',
     price: '2',
@@ -108,13 +123,28 @@ const tiers = [
     ],
     buttonText: 'Donate',
     buttonVariant: 'contained',
-  },
+  }
 ];
-
 class AboutContent extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        donationOptions: donateOptions,
+        cbOptions: {"pricing_type": "fixed_price",
+                    "local_price": { "amount": "100.0", "currency": "USD" },
+                    "description": "test desc"
+                  }
+
+    }
+
+}
+ 
 
   render() {
     const {classes} = this.props;
+    const { donationOptions, cbOptions } = this.state;
+    
   return(<div>
     
       <Container maxWidth="md" component="main" className={classes.heroContent}>
@@ -135,13 +165,15 @@ class AboutContent extends Component {
         <p />
       </Container>
       
-      <Container maxWidth="md" component="donate">
+      <Container maxWidth="md" >
       
         <Grid container spacing={5} alignItems="flex-end">
-          
-          {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Groceries' ? 12 : 6} md={4}>
+        
+          {donationOptions.map((tier) =>  ( 
+            
+            
+            <Grid item key={tier.title} xs={12} sm={tier.title === 'AGroceries' ? 12 : 6} md={4}>
+              
               <Card>
                 <CardHeader
                   title={tier.title}
@@ -161,14 +193,17 @@ class AboutContent extends Component {
                   
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
+                <CoinbaseCommerceButton className={classes.donateButton}  checkoutId={'3fc13d9e-93b1-424c-aecd-885b1dd0bfb0'}>Donate</CoinbaseCommerceButton>
+                  {/*<Button fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
-                  </Button>
+          </Button>*/}
                 </CardActions>
               </Card>
             </Grid>
+            
           ))}
         </Grid>
+        
       </Container>
       
       <Container maxWidth="md" component="footer" className={classes.footer}>
