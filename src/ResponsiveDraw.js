@@ -22,6 +22,7 @@ import Dashboard from './Dashboard';
 import AboutContent from './components/AboutContent';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import nyclogo from './nyclogo.svg';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -81,7 +82,11 @@ const drawer = (
             </ListItemIcon>
             <ListItemText primary={'About'} />
           </ListItem>
+          
+          
           {/* 
+          <Divider />
+          <img src={nyclogo} className="App-logo" alt="logo" />        
           <ListItem button key={'Dashboard'} component={Link} to={"/" + "Dashboard"}>
           <ListItemIcon>
                <InfoIcon />
