@@ -21,6 +21,10 @@ import { withStyles } from '@material-ui/core/styles';
 import CoinbaseCommerceButton from 'react-coinbase-commerce';
 import 'react-coinbase-commerce/dist/coinbase-commerce-button.css';
 
+import {
+  Page
+} from "tabler-react";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -147,10 +151,10 @@ class AboutContent extends Component {
     
   return(<div>
     
+    <Page.Content title="Support Me">
       <Container maxWidth="md" component="main" className={classes.heroContent}>
-        <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
-          Support Me
-        </Typography>
+      
+        
         <Typography variant="h6" align="center" color="textSecondary" component="p">
         I built this for New Yorkers who are looking for transparent data on the daily and 7 day positive COVID-19 rate in NYC.
         
@@ -163,6 +167,7 @@ class AboutContent extends Component {
         
         </Typography>
         <p />
+        
       </Container>
       
       <Container maxWidth="md" >
@@ -213,6 +218,7 @@ class AboutContent extends Component {
           <Footer/>      
         </Box>
       </Container>
+      </Page.Content>
       </div>);}
 }
 

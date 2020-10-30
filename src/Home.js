@@ -112,6 +112,7 @@ class Home extends Component {
     super(props);
     this.state = {
         lastTestResult : {},
+        oldLastTestResult: {},
         IsLoading : true
 
     }
@@ -119,7 +120,7 @@ class Home extends Component {
 }
 componentDidMount() {
 
-    let apiUrl = `https://nyccovid-aba5.restdb.io/rest/covidtests?q={}&h={"$orderby": {"DATE": 1}}`;
+    let apiUrl = `https://nyccovid-aba5.restdb.io/rest/nyccovid-extended?q={}&h={"$orderby": {"date": 1}}`;
 
     fetch(apiUrl, {
         method: 'GET',
@@ -132,6 +133,7 @@ componentDidMount() {
           
           this.setState({
               lastTestResult: responseJson[resLength-1],
+              oldLastTestResult: responseJson[resLength-2],
               IsLoading: false
           });
         }
@@ -145,12 +147,24 @@ componentDidMount() {
   render() {
     //const classes = useStyles();
     const {classes} = this.props;
-    const { lastTestResult, IsLoading } = this.state;
+    const { lastTestResult, oldLastTestResult, IsLoading } = this.state;
     let formattedAsOfDate = '';
-    
+    let dailyNet = 0;
+    let sevenDayNet = 0;
+    let dailyCasesAmt = 0;
+    let dailyCasesPct = 0;
+    let dailyHospitalizationAmt = 0;
+    let dailyHospitalizationPct = 0;
     if (!IsLoading){
-      formattedAsOfDate = (moment(lastTestResult.DATE)).add(5, 'h').format('MM-DD-YYYY');
+      formattedAsOfDate = (moment(lastTestResult.date)).add(5, 'h').format('MM-DD-YYYY');
+      dailyNet = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(((lastTestResult.daily_positive - oldLastTestResult.daily_positive) / oldLastTestResult.daily_positive) * 100);
+      sevenDayNet = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(((lastTestResult.seven_day_positive - oldLastTestResult.seven_day_positive) / oldLastTestResult.seven_day_positive) * 100);
+      dailyCasesAmt = lastTestResult.daily_cases;
+      dailyCasesPct = (lastTestResult.daily_cases / 550 ) * 100;
+      dailyHospitalizationAmt=lastTestResult.hospital_admissions;
+      dailyHospitalizationPct = (lastTestResult.hospital_admissions / 200)* 100;
     }
+    
     
 
     return (
@@ -160,17 +174,39 @@ componentDidMount() {
         
        
         <CssBaseline />
-        <img src={nyclogo} className="App-logo" alt="logo" />
+        
         
         <Page.Content title={IsLoading ? "Fetching..." : "As of " + formattedAsOfDate }>
         
         <trGrid.Row cards={true}>
           <trGrid.Col width={12} sm={12} lg={6}>
-            <MetricStat IsLoading={IsLoading} metricLabel="NYC Daily Positivity Rate" metricValue={lastTestResult.PERCENT_POSITIVE}/>
+            <MetricStat IsLoading={IsLoading} metricLabel="NYC Daily Positivity Rate" metricValue={lastTestResult.daily_positive} netChangeValue={dailyNet}/>
+            
           </trGrid.Col>
           <trGrid.Col width={12} sm={12} lg={6}>
-            <MetricStat IsLoading={IsLoading} metricLabel="NYC 7 Day Avg Positivity Rate" metricValue={lastTestResult.PERCENT_POSITIVE_7DAYS_AVG}/>
+            <MetricStat IsLoading={IsLoading} metricLabel="NYC 7 Day Avg Positivity Rate" metricValue={lastTestResult.seven_day_positive} netChangeValue={sevenDayNet}/>
           </trGrid.Col>
+        </trGrid.Row> 
+        <trGrid.Row cards={true}>
+          <trGrid.Col width={12} sm={12} lg={6}>
+
+          <ProgressCard
+            header="Daily reported cases of COVID-19, 7-Day Avg against Threshold"
+            content={dailyCasesAmt}
+            progressColor={(dailyCasesPct) < 33 ? "green" : (dailyCasesPct) < 66 ? "orange" : "red"}
+            progressWidth={dailyCasesPct}
+            />
+          </trGrid.Col>
+          
+          <trGrid.Col width={12} sm={12} lg={6}>
+          <ProgressCard
+            header="Daily number of people admitted to NYC hospitals for COVID-19-like illness against Threshold"
+            content={dailyHospitalizationAmt}
+            progressColor={(dailyHospitalizationPct) < 33 ? "green" : (dailyHospitalizationPct) < 66 ? "orange" : "red"}
+            progressWidth={dailyHospitalizationPct}
+            />
+          </trGrid.Col>
+          
         </trGrid.Row> 
         
         

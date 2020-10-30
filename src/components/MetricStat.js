@@ -101,7 +101,7 @@ class MetricStat extends Component {
 */
     render() {
         
-        const { classes, IsLoading, metricLabel, metricValue } = this.props;
+        const { classes, IsLoading, metricLabel, metricValue, netChangeValue } = this.props;
         //const { lastTestResult } = this.state;
 
   return (
@@ -117,7 +117,7 @@ class MetricStat extends Component {
           
         {!IsLoading && (
         
-          <StatsCard layout={1} movement={'~'} total={new Intl.NumberFormat('en-US', { maximumFractionDigits: 4, minimumFractionDigits: 2 }).format(metricValue * 100) + "%"} label={metricLabel} />
+          <StatsCard layout={1} movement={netChangeValue} total={new Intl.NumberFormat('en-US', { maximumFractionDigits: 4, minimumFractionDigits: 2 }).format(metricValue * 100) + "%"} label={metricLabel} />
         
           )
         }
