@@ -39,6 +39,7 @@ import {
   Badge,
 } from "tabler-react";
 
+import AmzAd from './components/AmzAd';
 
 const useStyles = ((theme) => ({
   '@global': {
@@ -83,11 +84,18 @@ const useStyles = ((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
+  ads: {
+    marginTop: theme.spacing(3),
+    overflow: 'auto',
+    overflowX: 'hidden',
+    overflowY: 'hidden'
+  }
 }));
 const footers = [
   {
     title: 'Resources',
-    description: [{title: 'Find Your Zone', link: 'https://NYC.gov/COVIDZone'}],
+    description: [{title: 'Find Your Zone', link: 'https://NYC.gov/COVIDZone'},
+    {title: 'NYC DOE School Based Testing Report', link: 'https://healthscreening.schools.nyc/surveytesting'}],
   },
   {
     title: 'Source',
@@ -241,13 +249,23 @@ componentDidMount() {
             </Grid>
           ))}
         </Grid>
+        
+        <Container maxWidth="md" component="ads" className={classes.ads}>
+          
+          <AmzAd />
+        
+        </Container>
         <Container maxWidth="md" component="footer" className={classes.footer}>
           <Box mt={5} className="App">
+          
             {/*<Copyright />*/}
             <Footer/>      
+            
           </Box>
         
         </Container>
+        
+        
              
         </div>
     );
