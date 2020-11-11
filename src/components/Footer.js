@@ -4,6 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Ad from '../components/Ad';
+import Link from '@material-ui/core/Link';
+import {
+  Icon
+} from "tabler-react";
+
 
 const styles = theme => ({
   root: {
@@ -24,11 +29,14 @@ function Footer(props) {
       
       <Paper className={classes.root} elevation={1}>
         <Typography component="p">    
-          Powered by Tristar | For Inquiries, Contact <a href={'mailto:info@tristarassoc.com'}>info@tristarassoc.com</a>
+        For Inquiries, Contact <a href={'mailto:info@nyccovidrate.com'}>info@nyccovidrate.com</a> | <Link color="inherit" href="https://twitter.com/NYCRate"><Icon prefix="fe" name="twitter" /></Link>
+          
         </Typography>
         <Typography component="p">
         © 2020 All Rights Reserved 
         </Typography>
+        
+        
       </Paper>
     </footer>
   );
