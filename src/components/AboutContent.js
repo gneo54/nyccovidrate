@@ -20,9 +20,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 import CoinbaseCommerceButton from 'react-coinbase-commerce';
 import 'react-coinbase-commerce/dist/coinbase-commerce-button.css';
+import { Link as RouterLink } from "react-router-dom";
 
 import {
-  Page
+  Page, Icon
 } from "tabler-react";
 
 function Copyright() {
@@ -89,8 +90,8 @@ const useStyles = ((theme) => ({
     borderRadius: '2px',
     fontWeight: 'bold',
     
-    margin: theme.spacing.unit * 2,
-    width: '100%',
+    //margin: theme.spacing.unit * 2,
+    //width: '100%',
     transition: 'box-shadow 150ms ease-out'
   }
 }));
@@ -152,7 +153,7 @@ class AboutContent extends Component {
   return(<div>
     
     <Page.Content title="Support Me">
-      <Container maxWidth="md" component="main" className={classes.heroContent}>
+      <Container maxWidth="md" component="main">
       
         
         <Typography variant="h6" align="center" color="textSecondary" component="p">
@@ -165,11 +166,19 @@ class AboutContent extends Component {
         My wife is a teacher in NYC and the NYC Dept of Education has a threshold that if the positivity of cases goes past 3%, they will close all public schools.
         I built this site so teachers (and any New Yorker) can check it every day.
         
-        </Typography>
-        <p />
+        Donate with Paypal {<p /> }
+        <Link color="inherit" href="https://www.paypal.com/donate?hosted_button_id=M3YA33XLA9UVQ&source=url/">
+                
+                  <Icon prefix="payment" name="paypal-dark" />
+                  </Link>
+                  {<p /> }or with Crypto Below{<p /> }
+        </Typography>    
+        
         
       </Container>
       
+    
+
       <Container maxWidth="md" >
       
         <Grid container spacing={5} alignItems="flex-end">
@@ -198,7 +207,11 @@ class AboutContent extends Component {
                   
                 </CardContent>
                 <CardActions>
+                
                 <CoinbaseCommerceButton className={classes.donateButton}  checkoutId={'3fc13d9e-93b1-424c-aecd-885b1dd0bfb0'}>Donate</CoinbaseCommerceButton>
+                
+          
+                
                   {/*<Button fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
           </Button>*/}
