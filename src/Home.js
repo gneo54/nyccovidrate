@@ -156,7 +156,7 @@ componentDidMount() {
     //const classes = useStyles();
     const {classes} = this.props;
     const { lastTestResult, oldLastTestResult, IsLoading } = this.state;
-    let formattedAsOfDate = '';
+    let formattedAsOfDate = '', dateRefreshed = '';
     let dailyNet = 0;
     let sevenDayNet = 0;
     let dailyCasesAmt = 0;
@@ -165,6 +165,7 @@ componentDidMount() {
     let dailyHospitalizationPct = 0;
     if (!IsLoading){
       formattedAsOfDate = (moment(lastTestResult.date)).add(5, 'h').format('MM-DD-YYYY');
+      dateRefreshed = (moment(lastTestResult.date_refreshed)).add(5, 'h').format('MM-DD-YYYY');
       dailyNet = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(((lastTestResult.daily_positive - oldLastTestResult.daily_positive) / oldLastTestResult.daily_positive) * 100);
       sevenDayNet = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(((lastTestResult.seven_day_positive - oldLastTestResult.seven_day_positive) / oldLastTestResult.seven_day_positive) * 100);
       dailyCasesAmt = lastTestResult.daily_cases;
@@ -184,8 +185,11 @@ componentDidMount() {
         <CssBaseline />
         
         
-        <Page.Content title={IsLoading ? "Fetching..." : "As of " + formattedAsOfDate }>
-        
+        <Page.Content title={IsLoading ? "Fetching..." : "As of " + formattedAsOfDate } subTitle={IsLoading ? "..." : "refreshed on " +dateRefreshed}>
+        {/*<Alert type="primary">
+            with code samples.
+        </Alert>
+         */}
         <trGrid.Row cards={true}>
           <trGrid.Col width={12} sm={12} lg={6}>
             <MetricStat IsLoading={IsLoading} metricLabel="NYC Daily Positivity Rate" metricValue={lastTestResult.daily_positive} netChangeValue={dailyNet}/>

@@ -20,7 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import CoinbaseCommerceButton from 'react-coinbase-commerce';
 import 'react-coinbase-commerce/dist/coinbase-commerce-button.css';
-import { Link as RouterLink } from "react-router-dom";
+
 
 import {
   Page, Icon
