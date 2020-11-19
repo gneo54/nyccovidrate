@@ -186,10 +186,12 @@ componentDidMount() {
         
         
         <Page.Content title={IsLoading ? "Fetching..." : "As of " + formattedAsOfDate } subTitle={IsLoading ? "..." : "refreshed on " +dateRefreshed}>
-        {/*<Alert type="primary">
-            with code samples.
+        <Alert type="primary">
+        <Link href={'/about'} variant="subtitle1" color="textSecondary">
+                      {"Support our site"}
+                    </Link>
         </Alert>
-         */}
+         
         <trGrid.Row cards={true}>
           <trGrid.Col width={12} sm={12} lg={6}>
             <MetricStat IsLoading={IsLoading} metricLabel="NYC Daily Positivity Rate" metricValue={lastTestResult.daily_positive} netChangeValue={dailyNet}/>
