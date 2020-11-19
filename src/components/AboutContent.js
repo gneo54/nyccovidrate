@@ -152,7 +152,7 @@ class AboutContent extends Component {
     
   return(<div>
     
-    <Page.Content title="Support Me">
+    <Page.Content title="Support Us">
       <Container maxWidth="md" component="main">
       
         
