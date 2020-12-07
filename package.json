@@ -21,6 +21,7 @@
     "react-moment": "^1.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-twitter-embed": "^3.0.3",
     "serve": "^11.3.2",
     "tabler-react": "^1.30.1"
   },

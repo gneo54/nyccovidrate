@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import Footer from './components/Footer'
 import Header from './components/Header'
 import MainContent from './components/MainContent'
+//import Button  from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+import C3Chart from "react-c3js";
 import './App.css';
 import AdSense from 'react-adsense';
 import Container from '@material-ui/core/Container';
@@ -17,6 +20,9 @@ import MetricStat from './components/MetricStat';
 import Moment from 'react-moment';
 import moment from 'moment';
 import nyclogo from './nyclogo.svg';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+
 
 import "tabler-react/dist/Tabler.css";
 
@@ -36,7 +42,7 @@ import {
   StampCard,
   StatsCard,
   ProgressCard,
-  Badge,
+  Badge
 } from "tabler-react";
 
 import AmzAd from './components/AmzAd';
@@ -111,6 +117,44 @@ const footers = [
   },
 ];
 
+const chartdata ={
+  title: "Lorem ipsum",
+  data: {
+    columns: [
+      // each columns data
+      ["data1", 1394 ],
+      ["data2", 550]
+      
+    ],
+    type: "bar", // default type of chart
+    types: {
+      data2: "line",
+      data3: "spline",
+    },
+    groups: [["data1"]],
+    colors: {
+      data1: "green",
+      data2: colors["pink"],
+      data3: colors["green"],
+      data4: colors["blue"],
+    },
+    names: {
+      // name of each serie
+      data1: "Development",
+      data2: "Marketing",
+      data3: "Sales",
+      data4: "Sales",
+    },
+  },
+  axis: {
+    x: {
+      type: "category",
+      // name of each category
+      categories: ["2013", "2014", "2015", "2016", "2017", "2018"],
+    },
+  }
+};
+
 const apikey = '5f7be4cf0acc087071bbf447';
 
 class Home extends Component {
@@ -163,6 +207,13 @@ componentDidMount() {
     let dailyCasesPct = 0;
     let dailyHospitalizationAmt = 0;
     let dailyHospitalizationPct = 0;
+
+    let sevenDayPct = 0;
+    let sevenDayx100 = 0;
+    let hospitalizationsPer100 = 0;
+    let hospitalizationsPer100Pct = 0;
+    let twitterShareNewCases = '';
+
     if (!IsLoading){
       formattedAsOfDate = (moment(lastTestResult.date)).add(5, 'h').format('MM-DD-YYYY');
       dateRefreshed = (moment(lastTestResult.date_refreshed)).add(5, 'h').format('MM-DD-YYYY');
@@ -172,6 +223,13 @@ componentDidMount() {
       dailyCasesPct = (lastTestResult.daily_cases / 550 ) * 100;
       dailyHospitalizationAmt=lastTestResult.hospital_admissions;
       dailyHospitalizationPct = (lastTestResult.hospital_admissions / 200)* 100;
+      
+      
+      sevenDayx100 = lastTestResult.seven_day_positive * 100;
+      sevenDayPct = ((lastTestResult.seven_day_positive *100) / 5) * 100;
+      hospitalizationsPer100 = lastTestResult.hospitalizations_per_hundred;
+      hospitalizationsPer100Pct = ((lastTestResult.hospitalizations_per_hundred) / 2 ) * 100;
+      twitterShareNewCases = 'New cases (probable + confirmed) of COVID-19, 7-Day Avg: ' + {dailyCasesAmt} +' #nyc #covid19';
     }
     
     
@@ -193,32 +251,154 @@ componentDidMount() {
         </Alert>
          
         <trGrid.Row cards={true}>
+          
           <trGrid.Col width={12} sm={12} lg={6}>
-            <MetricStat IsLoading={IsLoading} metricLabel="NYC Daily Positivity Rate" metricValue={lastTestResult.daily_positive} netChangeValue={dailyNet}/>
-            
+          <Card title={"NYC 7 Day Average Positivity Rate of NYC residents tested against Threshold*"}>
+                <Card.Body>
+            <MetricStat IsLoading={IsLoading} metricLabel="" metricValue={lastTestResult.seven_day_positive} netChangeValue={sevenDayNet}/>
+              <div className="clearfix">
+                <div className="float-right">
+                    <Text.Small muted>
+                      Threshold is 5%
+                    </Text.Small>
+                  </div>
+              </div>
+              <Progress size="sm">
+                <Progress.Bar color={(sevenDayPct) < 33 ? "green" : (sevenDayPct) < 66 ? "orange" : "red"} width={sevenDayPct} />
+              </Progress>
+            </Card.Body>
+            {/*
+                <TwitterShareButton
+                      url={'https://nyccovidrate'}
+                      options={{ text: 'NYC 7 Day Average Positivity Rate of NYC residents tested: ' + {sevenDayx100} + ' #nyc #covid19', via: 'nyccovidrate',size: 'large', }}
+                    />
+            */}
+                <Card.Footer>*Threshold - NYC has set a marker of where it wants to be under
+                </Card.Footer>
+                </Card>
           </trGrid.Col>
           <trGrid.Col width={12} sm={12} lg={6}>
-            <MetricStat IsLoading={IsLoading} metricLabel="NYC 7 Day Avg Positivity Rate" metricValue={lastTestResult.seven_day_positive} netChangeValue={sevenDayNet}/>
+            {/*
+            <MetricStat IsLoading={IsLoading} metricLabel="NYC Daily Positivity Rate" metricValue={lastTestResult.daily_positive} netChangeValue={dailyNet}/>
+            */}
+            <Card title={"New NYC COVID-19 Hospitalizations per 100K as reported by NYS, 7-day average against Threshold*"}>
+                <Card.Body>
+                      <div className="clearfix">
+                        
+                        <div className="float-middle display-4">
+                          <Text>
+                            <strong>{hospitalizationsPer100}</strong>
+                          </Text>
+                        </div>
+                        
+                        <div className="float-right">
+                          <Text.Small muted>
+                            Threshold is 2.0
+                          </Text.Small>
+                        </div>
+                      </div>
+                      <Progress size="sm">
+                        <Progress.Bar color={(hospitalizationsPer100Pct) < 33 ? "green" : (hospitalizationsPer100Pct) < 66 ? "orange" : "red"} width={hospitalizationsPer100Pct} />
+                      </Progress>
+    
+                </Card.Body>
+                {/*
+                <TwitterShareButton
+                      url={'https://nyccovidrate'}
+                      options={{ text: 'New NYC COVID-19 Hospitalizations per 100K as reported by NYS, 7-day avg: ' +{hospitalizationsPer100}+ ' #nyc #covid19', via: 'nyccovidrate',size: 'large', }}
+                    />
+                */}
+                <Card.Footer>*Threshold - NYC has set a marker of where it wants to be under
+                </Card.Footer>
+              </Card>
           </trGrid.Col>
         </trGrid.Row> 
         <trGrid.Row cards={true}>
           <trGrid.Col width={12} sm={12} lg={6}>
-
+          
+          {/*
           <ProgressCard
-            header="Daily reported cases of COVID-19, 7-Day Avg against Threshold"
+            header={<Tooltip  title="test test test">
+            <Text>Daily reported cases of COVID-19, 7-Day Avg against Threshold</Text>
+          </Tooltip>}
             content={dailyCasesAmt}
             progressColor={(dailyCasesPct) < 33 ? "green" : (dailyCasesPct) < 66 ? "orange" : "red"}
             progressWidth={dailyCasesPct}
-            />
+            ></ProgressCard>
+          */}
+  
+               <Card title={"New cases (probable + confirmed) of COVID-19, 7-Day Avg against Threshold*"}>
+                <Card.Body>
+                      <div className="clearfix">
+                        
+                        <div className="float-middle display-4">
+                          <Text>
+                            <strong>{dailyCasesAmt}</strong>
+                          </Text>
+                        </div>
+                        
+                        <div className="float-right">
+                          <Text.Small muted>
+                            Threshold is 550
+                          </Text.Small>
+                        </div>
+                      </div>
+                      <Progress size="sm">
+                        <Progress.Bar color={(dailyCasesPct) < 33 ? "green" : (dailyCasesPct) < 66 ? "orange" : "red"} width={dailyCasesPct} />
+                      </Progress>
+    
+                </Card.Body>
+                {
+                /*<TwitterShareButton
+                      url={'https://nyccovidrate'}
+                      options={{ text: twitterShareNewCases, via: 'nyccovidrate',size: 'large', }}
+                    />
+                */
+                }
+                <Card.Footer>*Threshold - NYC has set a marker of where it wants to be under
+                </Card.Footer>
+              </Card>
           </trGrid.Col>
           
           <trGrid.Col width={12} sm={12} lg={6}>
+            {/*
           <ProgressCard
             header="Daily number of people admitted to NYC hospitals for COVID-19-like illness against Threshold"
             content={dailyHospitalizationAmt}
             progressColor={(dailyHospitalizationPct) < 33 ? "green" : (dailyHospitalizationPct) < 66 ? "orange" : "red"}
             progressWidth={dailyHospitalizationPct}
             />
+            */}
+              <Card title={"Daily number of people admitted to NYC hospitals for COVID-19-like illness against Threshold*"}>
+                <Card.Body>
+                      <div className="clearfix">
+                        
+                        <div className="float-middle display-4">
+                          <Text>
+                            <strong>{dailyHospitalizationAmt}</strong>
+                          </Text>
+                        </div>
+                        
+                        <div className="float-right">
+                          <Text.Small muted>
+                            Threshold is 200
+                          </Text.Small>
+                        </div>
+                      </div>
+                      <Progress size="sm">
+                        <Progress.Bar color={(dailyHospitalizationPct) < 33 ? "green" : (dailyHospitalizationPct) < 66 ? "orange" : "red"} width={dailyHospitalizationPct} />
+                      </Progress>
+    
+                </Card.Body>
+                {/*
+                <TwitterShareButton
+                      url={'https://nyccovidrate'}
+                      options={{ text: 'Daily number of people admitted to NYC hospitals for COVID-19-like illness: ' +{dailyHospitalizationAmt}+ ' #nyc #covid19', via: 'nyccovidrate',size: 'large', }}
+                    />
+                */}
+                <Card.Footer>*Threshold - NYC has set a marker of where it wants to be under
+                </Card.Footer>
+              </Card>
           </trGrid.Col>
           
         </trGrid.Row> 
